@@ -12,4 +12,4 @@ apply_url: https://sgwattenscheid09.de
 image: /uploads/bildschirmfoto-2026-05-18-um-18.11.18.png
 active: true
 ---
-TEST TEST
+Komparsen für eine atmosphärische Barszene eines Kinofilms gesucht. Gesucht werden natürliche Typen mit urbanem Look für Hintergrund- und Interaktionsszenen mit Kamera-Nähe. Abendgarderobe bitte teilweise selbst mitbringen. Erste Set-Erfahrung willkommen, motivierte Newcomer ebenfalls gern gesehen.
