@@ -8,7 +8,7 @@ format_type: Spielfilm
 looking_for: Komparsen für eine Restaurantszene mit Großaufnahmen. Gute
   Garderobe wird gestellt. Hintergrund-Erfahrung von Vorteil, aber kein Muss.
 fee: 100 €
-apply_url: TEST TEST
+apply_url: https://sgwattenscheid09.de
 image: /uploads/bildschirmfoto-2026-05-18-um-18.11.18.png
 active: true
 ---
