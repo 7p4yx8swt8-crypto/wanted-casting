@@ -33,13 +33,24 @@ const { Content } = await render(casting);
         <div class="eyebrow mb-2">Gesucht</div>
         <div class="text-lg">{casting.data.looking_for}</div>
       </div>
-      {casting.data.fee && (
+{casting.data.fee && (
         <div>
           <div class="eyebrow mb-2">Gage</div>
           <div class="text-lg">{casting.data.fee}</div>
         </div>
       )}
     </div>
+
+    {casting.data.image && (
+      <div class="mt-12 -mx-6 md:mx-0">
+        <img
+          src={typeof casting.data.image === 'string' ? casting.data.image : casting.data.image.src}
+          alt={casting.data.title}
+          class="w-full h-auto aspect-[16/9] object-cover"
+          loading="lazy"
+        />
+      </div>
+    )}
 
     <div class="prose prose-lg max-w-2xl mt-12 text-ink/80 leading-relaxed [&>p]:mb-4 [&>h2]:font-display [&>h2]:text-2xl [&>h2]:mt-8 [&>h2]:mb-3">
       <Content />
