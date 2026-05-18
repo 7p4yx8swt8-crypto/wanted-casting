@@ -3,9 +3,9 @@
 
 backend:
   name: github
-  repo: repo: 7p4yx8swt8-crypto/wanted-casting   # ← anpassen nach GitHub-Setup
+  repo: 7p4yx8swt8-crypto/wanted-casting  
   branch: main
-  base_url: base_url: https://wanted-casting-oauth.gj5gmvjtks.workers.dev   # ← anpassen nach Worker-Deployment
+  base_url: https://wanted-casting-oauth.gj5gmvjtks.workers.dev
   auth_endpoint: /auth
 
 # Während der lokalen Entwicklung mit `npm run dev` direkt aufs lokale Dateisystem schreiben
