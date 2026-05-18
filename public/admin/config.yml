@@ -3,7 +3,7 @@
 
 backend:
   name: github
-  repo: 7p4yx8swt8-crypto/wanted-casting  
+  repo: 7p4yx8swt8-crypto/wanted-casting
   branch: main
   base_url: https://wanted-casting-oauth.gj5gmvjtks.workers.dev
   auth_endpoint: /auth
