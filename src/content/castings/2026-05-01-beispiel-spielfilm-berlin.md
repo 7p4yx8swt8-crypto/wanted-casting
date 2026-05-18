@@ -8,7 +8,7 @@ format_type: Spielfilm
 looking_for: 30 Männer und Frauen, 30–60 Jahre
 fee: Tagesgage 120 €
 apply_url: https://online.agentur-wanted.de/de/projectrole/application/key/1e8f8e5d-75b1-0c22-4996-e6b1fb2ffc08
-image: /uploads/u2318779343_cinematic_movie_still_wide_shot_of_a_production_pla_ed2c35f8-c632-4e35-95a8-ef83db7f6e4f.png
+image: ""
 active: true
 ---
 
