@@ -1,0 +1,108 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// WICHTIG: Hier deinen Web3Forms Access Key eintragen
+// Kostenlos erstellen unter: https://web3forms.com (E-Mail eingeben, Key kommt sofort per Mail)
+const WEB3FORMS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+---
+
+<Layout title={`${t('request.title')} — Agentur Wanted`}>
+  <section class="container-wide py-20 md:py-32">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <p class="eyebrow">— Briefing</p>
+        <h1 class="display-xl mt-6">{t('request.title')}</h1>
+        <p class="mt-8 text-lg text-ink/70 leading-relaxed max-w-md">
+          {t('request.lead')}
+        </p>
+        <div class="mt-10 pt-10 border-t border-ink/10 text-sm text-ink/60 space-y-2">
+          <div>info@wanted-casting.de</div>
+          <div>030 91 44 95 20</div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 lg:col-start-7">
+        <form id="request-form" class="space-y-6">
+          <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+          <input type="hidden" name="subject" value="Neue Projektanfrage — wanted-casting.de" />
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <label class="block">
+              <span class="eyebrow block mb-2">{t('request.form.name')} *</span>
+              <input type="text" name="name" required class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+            </label>
+            <label class="block">
+              <span class="eyebrow block mb-2">{t('request.form.company')}</span>
+              <input type="text" name="company" class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+            </label>
+            <label class="block">
+              <span class="eyebrow block mb-2">{t('request.form.email')} *</span>
+              <input type="email" name="email" required class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+            </label>
+            <label class="block">
+              <span class="eyebrow block mb-2">{t('request.form.phone')}</span>
+              <input type="tel" name="phone" class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+            </label>
+            <label class="block">
+              <span class="eyebrow block mb-2">{t('request.form.project')}</span>
+              <input type="text" name="project" class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+            </label>
+            <label class="block">
+              <span class="eyebrow block mb-2">{t('request.form.dates')}</span>
+              <input type="text" name="dates" class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+            </label>
+            <label class="block sm:col-span-2">
+              <span class="eyebrow block mb-2">{t('request.form.location')}</span>
+              <input type="text" name="location" class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+            </label>
+            <label class="block sm:col-span-2">
+              <span class="eyebrow block mb-2">{t('request.form.message')} *</span>
+              <textarea name="message" required rows="5" class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors resize-none"></textarea>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary mt-4">
+            {t('request.form.submit')}
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+          </button>
+
+          <p id="form-success" class="hidden text-ember">{t('request.form.success')}</p>
+          <p id="form-error" class="hidden text-red-600">{t('request.form.error')}</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('request-form') as HTMLFormElement;
+  const success = document.getElementById('form-success');
+  const error = document.getElementById('form-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    success?.classList.add('hidden');
+    error?.classList.add('hidden');
+
+    const formData = new FormData(form);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      if (res.ok) {
+        success?.classList.remove('hidden');
+        form.reset();
+      } else {
+        error?.classList.remove('hidden');
+      }
+    } catch {
+      error?.classList.remove('hidden');
+    }
+  });
+</script>

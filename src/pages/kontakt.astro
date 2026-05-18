@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const WEB3FORMS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+---
+
+<Layout title={`${t('contact.title')} — Agentur Wanted`}>
+  <section class="container-wide py-20 md:py-32">
+    <p class="eyebrow">— Get in touch</p>
+    <h1 class="display-xl mt-6">{t('contact.title')}</h1>
+    <p class="mt-8 max-w-xl text-lg text-ink/70">{t('contact.lead')}</p>
+
+    <div class="mt-20 grid grid-cols-1 md:grid-cols-12 gap-12">
+      <!-- Kontaktinfos -->
+      <div class="md:col-span-5 space-y-10">
+        <div>
+          <div class="eyebrow mb-3">{t('contact.office.title')}</div>
+          <p class="font-display text-2xl leading-snug">
+            agentur wanted<br/>
+            Rathausgasse 17<br/>
+            12529 Schönefeld
+          </p>
+          <p class="mt-4 text-sm text-ink/60">{t('contact.office.hours')}</p>
+        </div>
+
+        <div class="space-y-4 text-lg">
+          <a href="tel:+493091449520" class="block hover:text-ember transition-colors">
+            <span class="eyebrow block mb-1">{t('footer.phone')}</span>
+            030 91 44 95 20
+          </a>
+          <a href="https://wa.me/491711270289" class="block hover:text-ember transition-colors">
+            <span class="eyebrow block mb-1">{t('footer.whatsapp')}</span>
+            0171 1270289
+          </a>
+          <a href="mailto:info@wanted-casting.de" class="block hover:text-ember transition-colors">
+            <span class="eyebrow block mb-1">{t('footer.email')}</span>
+            info@wanted-casting.de
+          </a>
+        </div>
+      </div>
+
+      <!-- Kurz-Formular -->
+      <div class="md:col-span-6 md:col-start-7">
+        <h2 class="font-display text-3xl mb-8">{t('contact.form.title')}</h2>
+        <form id="contact-form" class="space-y-6">
+          <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+          <input type="hidden" name="subject" value="Kontaktnachricht — wanted-casting.de" />
+          <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+          <label class="block">
+            <span class="eyebrow block mb-2">{t('contact.form.name')} *</span>
+            <input type="text" name="name" required class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+          </label>
+          <label class="block">
+            <span class="eyebrow block mb-2">{t('contact.form.email')} *</span>
+            <input type="email" name="email" required class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors" />
+          </label>
+          <label class="block">
+            <span class="eyebrow block mb-2">{t('contact.form.message')} *</span>
+            <textarea name="message" required rows="5" class="w-full bg-transparent border-b border-ink/30 py-2 focus:border-ink outline-none transition-colors resize-none"></textarea>
+          </label>
+
+          <button type="submit" class="btn-primary">
+            {t('contact.form.submit')}
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+          </button>
+
+          <p id="contact-success" class="hidden text-ember">{t('request.form.success')}</p>
+          <p id="contact-error" class="hidden text-red-600">{t('request.form.error')}</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('contact-success');
+  const error = document.getElementById('contact-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    success?.classList.add('hidden');
+    error?.classList.add('hidden');
+
+    const formData = new FormData(form);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+      if (res.ok) {
+        success?.classList.remove('hidden');
+        form.reset();
+      } else {
+        error?.classList.remove('hidden');
+      }
+    } catch {
+      error?.classList.remove('hidden');
+    }
+  });
+</script>

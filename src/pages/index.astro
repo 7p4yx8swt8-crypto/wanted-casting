@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getLangFromUrl, useTranslations, localizedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const CASTCONNECT_REGISTER = 'https://online.agentur-wanted.de/de/projectrole/application/key/1e8f8e5d-75b1-0c22-4996-e6b1fb2ffc08';
+---
+
+<Layout title="Agentur Wanted — Komparsen & Casting">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="container-wide pt-16 md:pt-24 pb-20 md:pb-32">
+      <p class="eyebrow reveal reveal-delay-1">{t('hero.eyebrow')}</p>
+      <h1 class="display-xl mt-6 max-w-[18ch] reveal reveal-delay-2">
+        {t('hero.title')}
+      </h1>
+      <p class="mt-8 max-w-xl text-lg text-ink/70 leading-relaxed reveal reveal-delay-3">
+        {t('hero.lead')}
+      </p>
+      <div class="mt-10 flex flex-wrap gap-3 reveal reveal-delay-4">
+        <a href={localizedPath('/anfrage', lang)} class="btn-primary">
+          {t('hero.cta.request')}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+        </a>
+        <a href={CASTCONNECT_REGISTER} class="btn-secondary">
+          {t('hero.cta.register')}
+        </a>
+      </div>
+    </div>
+
+    <!-- Decorative side marks -->
+    <div class="absolute right-6 top-1/3 hidden lg:flex flex-col gap-3 font-mono text-[10px] text-ink/30">
+      <span>52°22'N</span>
+      <span>13°31'E</span>
+      <div class="w-px h-16 bg-ink/20 ml-3"></div>
+    </div>
+  </section>
+
+  <!-- STATS BAND -->
+  <section class="border-y border-ink/10 bg-bone">
+    <div class="container-wide py-12 grid grid-cols-3 gap-6 md:gap-10">
+      <div>
+        <div class="font-display text-4xl md:text-6xl tracking-tightest leading-none">40k+</div>
+        <div class="eyebrow mt-3">{t('stats.profiles')}</div>
+      </div>
+      <div>
+        <div class="font-display text-4xl md:text-6xl tracking-tightest leading-none">350k+</div>
+        <div class="eyebrow mt-3">{t('stats.bookings')}</div>
+      </div>
+      <div>
+        <div class="font-display text-4xl md:text-6xl tracking-tightest leading-none">20+</div>
+        <div class="eyebrow mt-3">{t('stats.years')}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="container-wide py-24 md:py-32">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div class="md:col-span-4">
+        <p class="eyebrow">— 01 / 03</p>
+        <h2 class="display-lg mt-4">{t('services.title')}</h2>
+      </div>
+
+      <div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div class="border-t border-ink pt-5">
+          <div class="font-mono text-xs text-muted mb-3">001</div>
+          <h3 class="font-display text-2xl leading-tight mb-3">{t('services.kompars.title')}</h3>
+          <p class="text-sm text-ink/70 leading-relaxed">{t('services.kompars.text')}</p>
+        </div>
+        <div class="border-t border-ink pt-5">
+          <div class="font-mono text-xs text-muted mb-3">002</div>
+          <h3 class="font-display text-2xl leading-tight mb-3">{t('services.darsteller.title')}</h3>
+          <p class="text-sm text-ink/70 leading-relaxed">{t('services.darsteller.text')}</p>
+        </div>
+        <div class="border-t border-ink pt-5">
+          <div class="font-mono text-xs text-muted mb-3">003</div>
+          <h3 class="font-display text-2xl leading-tight mb-3">{t('services.casting.title')}</h3>
+          <p class="text-sm text-ink/70 leading-relaxed">{t('services.casting.text')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-ember text-paper">
+    <div class="container-wide py-20 md:py-28 grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+      <div class="md:col-span-8">
+        <h2 class="display-lg">{t('cta.title')}</h2>
+        <p class="mt-6 text-lg text-paper/80 max-w-xl">{t('cta.text')}</p>
+      </div>
+      <div class="md:col-span-4 md:text-right">
+        <a href={localizedPath('/anfrage', lang)} class="inline-flex items-center gap-2 bg-paper text-ink px-6 py-3 text-sm uppercase tracking-widest hover:bg-ink hover:text-paper transition-colors">
+          {t('cta.button')}
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

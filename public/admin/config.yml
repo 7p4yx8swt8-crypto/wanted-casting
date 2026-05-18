@@ -1,0 +1,49 @@
+# Decap CMS Konfiguration für wanted-casting.de
+# Login via GitHub OAuth, gehosted auf eigenem Cloudflare Worker
+
+backend:
+  name: github
+  repo: DEIN_GITHUB_USER/wanted-casting   # ← anpassen nach GitHub-Setup
+  branch: main
+  base_url: https://wanted-casting-oauth.DEIN_CLOUDFLARE_USER.workers.dev   # ← anpassen nach Worker-Deployment
+  auth_endpoint: /auth
+
+# Während der lokalen Entwicklung mit `npm run dev` direkt aufs lokale Dateisystem schreiben
+local_backend: true
+
+# Pfad und URL für hochgeladene Bilder
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+# Optisches Branding
+site_url: https://www.wanted-casting.de
+display_url: https://www.wanted-casting.de
+logo_url: /favicon.svg
+
+# Editor-Sprache
+locale: de
+
+collections:
+  - name: "castings"
+    label: "Castings"
+    label_singular: "Casting"
+    folder: "src/content/castings"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} — {{location}} ({{dates}})"
+    sortable_fields: ['date', 'title']
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Titel", name: "title", widget: "string", hint: "z.B. 'Tatort Berlin — Komparsen gesucht'" }
+      - { label: "Veröffentlicht am", name: "date", widget: "datetime", default: "" }
+      - { label: "Drehzeitraum", name: "dates", widget: "string", hint: "z.B. '15.–20. Juni 2026'" }
+      - { label: "Drehort", name: "location", widget: "string", hint: "z.B. 'Berlin Mitte'" }
+      - { label: "Produktion", name: "production", widget: "string", required: false }
+      - { label: "Format", name: "format_type", widget: "select", options: ["Spielfilm", "Serie", "Werbung", "Foto", "Sonstiges"], default: "Spielfilm" }
+      - { label: "Gesucht", name: "looking_for", widget: "string", hint: "z.B. '30 Männer, 40–60 Jahre'" }
+      - { label: "Gage", name: "fee", widget: "string", required: false, hint: "z.B. 'Tagesgage 120 €'" }
+      - { label: "Beschreibung", name: "body", widget: "markdown", hint: "Details zum Casting — Markdown erlaubt" }
+      - { label: "Bewerbungs-Link (Castconnect)", name: "apply_url", widget: "string", required: false, hint: "Optional: Link zum Castconnect-Bewerbungsformular" }
+      - { label: "Bild", name: "image", widget: "image", required: false }
+      - { label: "Aktiv anzeigen?", name: "active", widget: "boolean", default: true, hint: "Wenn aus, erscheint das Casting nicht auf der Website" }

@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  ::selection {
+    @apply bg-ink text-paper;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply mx-auto w-full max-w-[1400px] px-6 md:px-10;
+  }
+
+  .display-xl {
+    @apply font-display font-light tracking-tightest leading-[0.95];
+    font-size: clamp(2.5rem, 7vw, 6rem);
+  }
+
+  .display-lg {
+    @apply font-display font-light tracking-tightest leading-[1];
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+
+  .eyebrow {
+    @apply font-sans text-xs uppercase tracking-[0.2em] text-muted;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-ink text-paper px-6 py-3 text-sm uppercase tracking-widest transition-all hover:bg-ember;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 border border-ink text-ink px-6 py-3 text-sm uppercase tracking-widest transition-all hover:bg-ink hover:text-paper;
+  }
+
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Reveal animation on page load */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-delay-1 { animation-delay: 0.1s; }
+.reveal-delay-2 { animation-delay: 0.25s; }
+.reveal-delay-3 { animation-delay: 0.4s; }
+.reveal-delay-4 { animation-delay: 0.55s; }
