@@ -7,7 +7,7 @@ production: Beispiel Film GmbH
 format_type: Spielfilm
 looking_for: 30 Männer und Frauen, 30–60 Jahre
 fee: Tagesgage 120 €
-apply_url: https://online.agentur-wanted.de/de/projectrole/application/key/1e8f8e5d-75b1-0c22-4996-e6b1fb2ffc08
+apply_url: https://de.wikipedia.org/wiki/VfL_Bochum
 image: /uploads/bildschirmfoto-2026-05-18-um-17.02.02.png
 active: true
 ---
