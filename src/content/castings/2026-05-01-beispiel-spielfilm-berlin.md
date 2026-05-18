@@ -1,5 +1,5 @@
 ---
-title: Beispiel — Spielfilm Berlin
+title: Spielfilm Berlin
 date: 2026-05-01
 dates: 12.–18. Juni 2026
 location: Berlin Mitte
