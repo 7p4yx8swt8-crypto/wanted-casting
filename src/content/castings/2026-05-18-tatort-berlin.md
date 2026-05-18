@@ -9,7 +9,7 @@ looking_for: Komparsen für eine Restaurantszene mit Großaufnahmen. Gute
   Garderobe wird gestellt. Hintergrund-Erfahrung von Vorteil, aber kein Muss.
 fee: 100 €
 apply_url: TEST TEST
-image: /uploads/bildschirmfoto-2026-05-18-um-17.02.02.png
+image: /uploads/bildschirmfoto-2026-05-18-um-18.11.18.png
 active: true
 ---
 TEST TEST
