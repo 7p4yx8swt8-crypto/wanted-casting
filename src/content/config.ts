@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 
 const castings = defineCollection({
   type: 'content',
-  schema: ({ image }) => z.object({
+  schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
     dates: z.string(),
@@ -12,7 +12,7 @@ const castings = defineCollection({
     looking_for: z.string(),
     fee: z.string().optional(),
     apply_url: z.string().optional(),
-    image: image().optional(),
+    image: z.string().optional(),
     active: z.boolean().default(true),
   }),
 });
