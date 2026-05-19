@@ -1,24 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 const faqs = [
   { q: t('help.faq.1.q'), a: t('help.faq.1.a') },
   { q: t('help.faq.2.q'), a: t('help.faq.2.a') },
   { q: t('help.faq.3.q'), a: t('help.faq.3.a') },
   { q: t('help.faq.4.q'), a: t('help.faq.4.a') },
+  { q: t('help.faq.5.q'), a: t('help.faq.5.a') },
 ];
 ---
-
 <Layout title={`${t('help.title')} — Agentur Wanted`}>
   <section class="container-wide py-20 md:py-32">
     <p class="eyebrow">— FAQ</p>
     <h1 class="display-xl mt-6 max-w-[16ch]">{t('help.title')}</h1>
     <p class="mt-8 max-w-xl text-lg text-ink/70">{t('help.lead')}</p>
-
     <div class="mt-20 max-w-3xl">
       {faqs.map((faq, i) => (
         <details class="group border-t border-ink/20 py-6">
