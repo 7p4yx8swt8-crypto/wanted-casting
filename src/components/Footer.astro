@@ -1,21 +1,19 @@
 ---
 import { getLangFromUrl, useTranslations, localizedPath } from '../i18n/utils';
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-
 <footer class="bg-ink text-paper mt-32">
   <div class="container-wide py-20 grid grid-cols-1 md:grid-cols-12 gap-10">
     <div class="md:col-span-5">
-      <div class="font-display text-4xl tracking-tightest leading-none mb-6">
-        wanted<span class="text-ember">.</span>
-      </div>
+      <a href={localizedPath('/', lang)} class="inline-block mb-6">
+        <span class="font-mono text-xs tracking-widest text-paper/40 uppercase block mb-1">agentur</span>
+        <span class="font-mono text-3xl font-bold text-ember tracking-tight leading-none">wanted</span>
+      </a>
       <p class="text-paper/60 text-sm leading-relaxed max-w-sm">
         {t('footer.address')}
       </p>
     </div>
-
     <div class="md:col-span-4 space-y-3 text-sm">
       <div class="eyebrow !text-paper/40">{t('footer.phone')}</div>
       <a href="tel:+493091449520" class="block text-paper hover:text-ember transition-colors">
@@ -30,7 +28,6 @@ const t = useTranslations(lang);
         info@wanted-casting.de
       </a>
     </div>
-
     <div class="md:col-span-3 flex flex-col gap-3 text-sm">
       <a href={localizedPath('/impressum', lang)} class="text-paper/70 hover:text-paper transition-colors">
         {t('footer.legal')}
@@ -51,7 +48,6 @@ const t = useTranslations(lang);
       </div>
     </div>
   </div>
-
   <div class="border-t border-paper/10">
     <div class="container-wide py-6 text-xs text-paper/40 flex flex-col sm:flex-row justify-between gap-2">
       <span>{t('footer.copyright')}</span>
