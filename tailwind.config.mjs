@@ -7,7 +7,7 @@ export default {
         ink: '#0a0a0a',
         paper: '#f5f2ec',
         bone: '#e8e3d8',
-        ember: '#c8513a',
+        ember: '#FF6600',
         muted: '#6b6660',
       },
       fontFamily: {
