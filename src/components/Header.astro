@@ -1,12 +1,9 @@
 ---
 import { getLangFromUrl, useTranslations, localizedPath } from '../i18n/utils';
-
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-
 const CASTCONNECT_LOGIN = 'https://online.agentur-wanted.de/de/login/actor';
 const CASTCONNECT_REGISTER = 'https://online.agentur-wanted.de/de/projectrole/application/key/1e8f8e5d-75b1-0c22-4996-e6b1fb2ffc08';
-
 const navItems = [
   { href: localizedPath('/agentur', lang), label: t('nav.agency') },
   { href: localizedPath('/castings', lang), label: t('nav.castings') },
@@ -14,17 +11,18 @@ const navItems = [
   { href: localizedPath('/kontakt', lang), label: t('nav.contact') },
   { href: localizedPath('/hilfe', lang), label: t('nav.help') },
 ];
-
 const otherLang = lang === 'de' ? 'en' : 'de';
 const otherLangPath = lang === 'de' ? '/en' : Astro.url.pathname.replace(/^\/en/, '') || '/';
 ---
-
 <header class="border-b border-ink/10 bg-paper/80 backdrop-blur-md sticky top-0 z-50">
-  <div class="container-wide flex items-center justify-between py-5">
-    <a href={localizedPath('/', lang)} class="flex items-baseline gap-2 group">
-      <img src="/logo.png" alt="agentur wanted" class="h-24 w-auto" />
+  <div class="container-wide flex items-center justify-between py-3 md:py-5">
+
+    <!-- Logo -->
+    <a href={localizedPath('/', lang)} class="flex items-center group shrink-0">
+      <img src="/logo.png" alt="agentur wanted" class="h-10 md:h-14 w-auto" />
     </a>
 
+    <!-- Desktop Nav -->
     <nav class="hidden lg:flex items-center gap-8">
       {navItems.map((item) => (
         <a
@@ -36,7 +34,8 @@ const otherLangPath = lang === 'de' ? '/en' : Astro.url.pathname.replace(/^\/en/
       ))}
     </nav>
 
-    <div class="flex items-center gap-3">
+    <!-- Right side -->
+    <div class="flex items-center gap-2 md:gap-3">
       <a
         href={otherLangPath}
         class="text-xs uppercase tracking-widest text-muted hover:text-ink transition-colors"
@@ -50,15 +49,15 @@ const otherLangPath = lang === 'de' ? '/en' : Astro.url.pathname.replace(/^\/en/
       >
         {t('nav.login')}
       </a>
-      <a href={CASTCONNECT_REGISTER} class="btn-primary !py-2 !px-4 text-xs">
+      <a href={CASTCONNECT_REGISTER} class="btn-primary !py-2 !px-3 md:!px-4 text-xs whitespace-nowrap">
         {t('nav.register')}
       </a>
       <button
         id="mobile-menu-toggle"
-        class="lg:hidden p-2"
+        class="lg:hidden p-2 shrink-0"
         aria-label="Menu"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <line x1="3" y1="8" x2="21" y2="8"/>
           <line x1="3" y1="16" x2="21" y2="16"/>
         </svg>
@@ -80,7 +79,6 @@ const otherLangPath = lang === 'de' ? '/en' : Astro.url.pathname.replace(/^\/en/
     </nav>
   </div>
 </header>
-
 <script>
   const toggle = document.getElementById('mobile-menu-toggle');
   const menu = document.getElementById('mobile-menu');
